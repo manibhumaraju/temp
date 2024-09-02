@@ -12,7 +12,6 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-
 CHECK_ROOT=(){
     if [ $USERID -ne 0 ]
     then
