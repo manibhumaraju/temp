@@ -12,7 +12,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-CHECK_ROOT=(){
+CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then
         echo -e "$R PLEASE RUN THIS COMMAND WIRH ROOT PRIVILEGES $N" | tee -a $LOG_FILE
@@ -46,14 +46,14 @@ then
     useradd expense &>>$LOG_FILE
     VALIDATE $? "adding Expence user"
 else
-    echo "Expense user is already exist..$Y Skipping $N"
+    echo -e "Expense user is already exist..$Y Skipping $N"
 fi
 
 mkdir -p /app &>>$LOG_FILE
 VALIDATE $? "Creating app folder"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
-VALIDATE $? "Downloding Backend Code"
+VALIDATE $? "Downloading Backend Code"
 
 cd /app &>>$LOG_FILE
 rm -rf /app/* &>>$LOG_FILE
@@ -71,7 +71,7 @@ mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pExpenseApp@1 < /app/schema/backend.sq
 VALIDATE $? "Loading Schema"
 
 systemctl daemon-reload &>>$LOG_FILE
-VALIDATE $? "Deamon Reloded"
+VALIDATE $? "Daemon Reloded"
 
 systemctl enable backend &>>$LOG_FILE
 VALIDATE $? "Enable Backend"
