@@ -9,7 +9,7 @@ LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME-$TIMESTAMP.log"
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
-N="\e"[0m"
+N="\e[0m"
 mkdir -p $LOG_FOLDER
 CHECK_ROOT(){
     if [ $USERID -ne 0 ]
@@ -28,7 +28,7 @@ VALIDATE(){
     fi
 }
 
-echo "Script is started using at: $(date)" | tee -a $LOG__FILE
+echo "Script is started using at: $(date)" | tee -a $LOG_FILE
 
 
 CHECK_ROOT
