@@ -4,12 +4,12 @@ USERID=$(id -u)
 CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then
-        echo "Please run this command with root priveleges"
+        echo "Please run this Script with root priveleges"
         exit 1
     fi
 }
 
-VALIDATE=(){
+VALIDATE(){
     if [ $1 -ne 0 ]
     then
         echo "$2 is Failed.."
@@ -17,6 +17,7 @@ VALIDATE=(){
         echo "$2 is Success.."
     fi
 }
+
 echo "Script is started using at: $(date)"
 
 CHECK_ROOT
