@@ -67,7 +67,7 @@ cp /home/ec2-user/temp/backend.service /etc/systemd/system/backend.service
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing MySQL"
 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h mysql.manibhumaraju.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Loading Schema"
 
 systemctl daemon-reload &>>$LOG_FILE
