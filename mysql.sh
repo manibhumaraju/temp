@@ -10,7 +10,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e"[0m"
-mkdir -p LOG_FOLDER
+mkdir -p $LOG_FOLDER
 CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then
