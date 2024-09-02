@@ -1,7 +1,11 @@
 #!/bin/bash
 
 USERID=$(id -u)
-
+LOG_FOLDER="/var/log/expense"
+SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
+TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
+LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME-$TIMESTAMP.log"
+mkdir -p $LOG_FOLDER
 
 
 CHECK_ROOT=(){
@@ -59,7 +63,14 @@ cp /home/ec2-user/temp/backend.service /etc/systemd/system/backend.service
 dnf install mysql -y
 VALIDATE $? "Installing MySQL"
 
-
+mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pExpenseApp@1 < /app/schema/backend.sql
+VALIDATE $? "Loading Schema"
 
 systemctl daemon-reload
-VALIDATE $? ""
+VALIDATE $? "Deamon Reloded"
+
+systemctl enable backend
+VALIDATE $? "Enable Backend"
+
+systemctl restart backend
+VALIDATE $? "Restart Backend"
