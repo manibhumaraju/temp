@@ -43,6 +43,7 @@ systemctl start mysqld &>>$LOG_FILE
 VALIDATE $? "Starting MySQL Server"
 
 mysql -h mysql.manibhumaraju.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
+
 if [ $? -ne 0 ]
 then
     echo "Mysql Root password is not set... Setting now" &>>$LOG_FILE
@@ -51,6 +52,3 @@ then
 else
     echo -e "MySQL Root Password is already Setup...$Y SKIPPING $N" | tee -a $LOG_FILE
 fi
-
-
-
