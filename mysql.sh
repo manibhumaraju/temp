@@ -1,10 +1,10 @@
 #!/bin/bash
 
 USERID=$(id -u)
-CHECK-ROOT(){
+CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then
-        echo "please run this command with root priveleges"
+        echo "Please run this command with root priveleges"
         exit 1
     fi
 }
